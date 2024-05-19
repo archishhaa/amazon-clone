@@ -24,7 +24,7 @@
 
 
 .logo{
-    background-image: url("amazon_image.png"));
+    background-image: url("amazon_image.png");
     background-size: white;
     height: 50px;
     width: 100px;
@@ -85,6 +85,3 @@
     font-weight: 700;
     display: flex;
 }
-
-.heyuser 
-
