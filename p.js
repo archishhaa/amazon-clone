@@ -1,34 +1,38 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const searchIcon = document.querySelector('.search-icon');
-    const searchInput = document.querySelector('.search-input');
+// Carousel functionality
+let slideIndex = 0;
+showSlides();
 
-    searchIcon.addEventListener('click', () => {
-        alert(`Searching for: ${searchInput.value}`);
-    });
-
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel .slides img');
-    const totalSlides = slides.length;
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.style.display = i === index ? 'block' : 'none';
-        });
+function showSlides() {
+    let slides = document.querySelectorAll('.slides img');
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none';
     }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        showSlide(currentSlide);
+    slideIndex++;
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
     }
+    slides[slideIndex - 1].style.display = 'block';
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
 
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        showSlide(currentSlide);
+function prevSlide() {
+    slideIndex -= 2;
+    if (slideIndex < 0) {
+        slideIndex = document.querySelectorAll('.slides img').length - 1;
     }
+    showSlides();
+}
 
-    showSlide(currentSlide);
+function nextSlide() {
+    showSlides();
+}
 
-    document.querySelector('.carousel-control.next').addEventListener('click', nextSlide);
-    document.querySelector('.carousel-control.prev').addEventListener('click', prevSlide);
+// Sign-in functionality
+document.getElementById('signInForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    document.getElementById('signInContainer').classList.remove('active');
 });
 
+window.onload = function() {
+    document.getElementById('signInContainer').classList.add('active');
+}
